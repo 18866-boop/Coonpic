@@ -519,40 +519,76 @@ footer {
   .content {
     padding: 1.5rem;
   }
-  .close-btn {
-    top: 1.5rem;
-    left: 1.5rem;
-  }
-  .info-btn {
+  
+  /* Update Hamburger Menu Position for mobile */
+  .hamburger-btn {
     top: 1.5rem;
     right: 1.5rem;
   }
+  
+  .slide-menu {
+    width: 100vw;
+    right: -100vw;
+    padding: 6rem 2rem;
+    align-items: center;
+  }
+  
+  .menu-item {
+    text-align: center;
+    font-size: 1.8rem;
+  }
+  
   .hero-split {
     flex-direction: column-reverse;
     text-align: center;
     gap: 2rem;
+    margin-top: 2rem;
   }
+  
   .hero-image {
     justify-content: center;
   }
+  
+  .hero-image img {
+    max-width: 250px;
+    padding: 10px 10px 40px 10px;
+  }
+  
+  .hero-image::before {
+    width: 80px;
+    height: 25px;
+    top: -10px;
+  }
+  
   .hero-desc {
     margin: 0 auto 2rem auto;
+    font-size: 1rem;
   }
+  
   .title {
     font-size: 2.5rem;
     margin-bottom: 1rem;
   }
+  
   header {
     flex-direction: column;
-    gap: 1.5rem;
-    align-items: flex-start;
+    gap: 1rem;
+    align-items: center;
   }
+  
+  nav {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
   .explorer-window {
     width: 100vw;
     height: 100vh;
     border-radius: 0;
     flex-direction: column;
   }
+  
   .explorer-sidebar {
     width: 100%;
     height: auto;
@@ -560,10 +596,11 @@ footer {
     border-right: none;
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
+  
   .explorer-grid {
-    padding: 1.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
+    padding: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.5rem;
   }
 }
 
