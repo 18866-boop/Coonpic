@@ -74,6 +74,7 @@ body {
   justify-content: space-between;
   padding: 2.5rem 5rem;
   pointer-events: auto;
+  overflow-y: auto; /* Allow scrolling on small screens */
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
@@ -518,7 +519,8 @@ footer {
 @media (max-width: 768px) {
   .content {
     padding: 1.5rem 1rem;
-    justify-content: space-around;
+    justify-content: flex-start;
+    gap: 1rem;
   }
   
   header {
