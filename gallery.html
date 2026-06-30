@@ -23,6 +23,10 @@
     <title>Gallery - Photographer Portfolio</title>
   </head>
   <body class="gallery-view">
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
     <!-- Background overlay to darken images so text is readable -->
     <div class="bg-overlay" id="bg-overlay"></div>
 
@@ -31,11 +35,18 @@
         <!-- Columns will be injected here by JS -->
     </div>
 
-    <!-- Back Button for Gallery Mode -->
-    <a href="/" id="close-gallery-btn" class="close-btn" style="text-decoration: none; display: inline-block;">← Back to Intro</a>
+    <!-- Hamburger Menu Button -->
+    <button id="hamburger-btn" class="hamburger-btn">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
 
-    <!-- Details Button -->
-    <button id="info-btn" class="info-btn">Browse Albums</button>
+    <!-- Slide-out Menu -->
+    <nav id="slide-menu" class="slide-menu">
+      <a href="/" class="menu-item">Back to Intro</a>
+      <button id="info-btn" class="menu-item">Browse Albums</button>
+    </nav>
 
     <!-- Album Explorer Overlay -->
     <div id="album-explorer" class="album-explorer">

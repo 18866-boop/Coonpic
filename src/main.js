@@ -42,3 +42,45 @@ async function preloadGalleryImages() {
 
 // Start preloading immediately when the intro page loads
 preloadGalleryImages();
+
+// --- Custom Cursor Logic ---
+function initCursor() {
+  const dot = document.querySelector('.cursor-dot');
+  const outline = document.querySelector('.cursor-outline');
+  
+  if (!dot || !outline) return;
+
+  // Only activate custom cursor on devices that use a mouse (fine pointer)
+  if (window.matchMedia("(pointer: fine)").matches) {
+    document.body.classList.add('custom-cursor-active');
+    
+    window.addEventListener('mousemove', (e) => {
+      const posX = e.clientX;
+      const posY = e.clientY;
+      
+      dot.style.left = `${posX}px`;
+      dot.style.top = `${posY}px`;
+      
+      // Add slight delay to outline for smooth trailing effect
+      outline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+      }, { duration: 500, fill: "forwards" });
+    });
+
+    // Add active state when hovering over links/buttons
+    const interactables = document.querySelectorAll('a, button, img');
+    interactables.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        dot.classList.add('active');
+        outline.classList.add('active');
+      });
+      el.addEventListener('mouseleave', () => {
+        dot.classList.remove('active');
+        outline.classList.remove('active');
+      });
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initCursor);

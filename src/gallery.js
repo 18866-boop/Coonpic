@@ -80,14 +80,28 @@ if (allImageUrls.length === 0) {
   // Append everything to the DOM at once (much faster)
   galleryContainer.appendChild(fragment);
 
-  // Album Explorer Logic
+  // Album Explorer & Slide Menu Logic
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const slideMenu = document.getElementById('slide-menu');
   const infoBtn = document.getElementById('info-btn');
   const closeExplorerBtn = document.getElementById('close-explorer-btn');
   const explorer = document.getElementById('album-explorer');
 
+  // Hamburger Menu Toggle
+  if (hamburgerBtn && slideMenu) {
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('open');
+      slideMenu.classList.toggle('open');
+    });
+  }
+
+  // Open Explorer
   if (infoBtn && closeExplorerBtn && explorer) {
     infoBtn.addEventListener('click', () => {
       explorer.classList.add('show');
+      // Close the slide menu if it's open
+      if (hamburgerBtn) hamburgerBtn.classList.remove('open');
+      if (slideMenu) slideMenu.classList.remove('open');
     });
     
     closeExplorerBtn.addEventListener('click', () => {
@@ -147,3 +161,45 @@ if (allImageUrls.length === 0) {
     });
   }
 }
+
+// --- Custom Cursor Logic ---
+function initCursor() {
+  const dot = document.querySelector('.cursor-dot');
+  const outline = document.querySelector('.cursor-outline');
+  
+  if (!dot || !outline) return;
+
+  if (window.matchMedia("(pointer: fine)").matches) {
+    document.body.classList.add('custom-cursor-active');
+    
+    window.addEventListener('mousemove', (e) => {
+      const posX = e.clientX;
+      const posY = e.clientY;
+      
+      dot.style.left = `${posX}px`;
+      dot.style.top = `${posY}px`;
+      
+      outline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+      }, { duration: 500, fill: "forwards" });
+    });
+
+    // Delegate hover events for dynamically added images in the grid
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.tagName.toLowerCase() === 'img' || e.target.tagName.toLowerCase() === 'button' || e.target.closest('.folder-item') || e.target.tagName.toLowerCase() === 'a') {
+        dot.classList.add('active');
+        outline.classList.add('active');
+      }
+    });
+    
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.tagName.toLowerCase() === 'img' || e.target.tagName.toLowerCase() === 'button' || e.target.closest('.folder-item') || e.target.tagName.toLowerCase() === 'a') {
+        dot.classList.remove('active');
+        outline.classList.remove('active');
+      }
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initCursor);
