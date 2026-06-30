@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fonts for elegant aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+      /* Critical CSS to prevent modal flash (FOUC) on page load */
+      #album-explorer {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+      }
+      #album-explorer.show {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        visibility: visible !important;
+      }
+    </style>
+    <title>Gallery - Photographer Portfolio</title>
+  </head>
+  <body class="gallery-view">
+    <!-- Background overlay to darken images so text is readable -->
+    <div class="bg-overlay" id="bg-overlay"></div>
+
+    <!-- Container for the infinite sliding columns -->
+    <div class="gallery-container" id="gallery">
+        <!-- Columns will be injected here by JS -->
+    </div>
+
+    <!-- Back Button for Gallery Mode -->
+    <a href="/" id="close-gallery-btn" class="close-btn" style="text-decoration: none; display: inline-block;">← Back to Intro</a>
+
+    <!-- Details Button -->
+    <button id="info-btn" class="info-btn">Browse Albums</button>
+
+    <!-- Album Explorer Overlay -->
+    <div id="album-explorer" class="album-explorer">
+      <div class="explorer-window">
+        <!-- Sidebar -->
+        <aside class="explorer-sidebar">
+          <div class="sidebar-top">
+            <h3>Collections</h3>
+          </div>
+          <ul id="folder-list" class="folder-list">
+            <!-- Folders injected here via JS -->
+          </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="explorer-main">
+          <header class="main-header">
+            <div class="header-text">
+              <h2 id="album-title">Select an Album</h2>
+              <p id="album-meta"></p>
+            </div>
+            <button id="close-explorer-btn" class="close-explorer">&times;</button>
+          </header>
+          
+          <div id="explorer-grid" class="explorer-grid">
+            <!-- Images injected here via JS -->
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script type="module" src="/src/gallery.js"></script>
+  </body>
+</html>
